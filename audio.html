@@ -26,36 +26,38 @@
             padding: 10px 20px;
             margin: 10px;
             cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
             border: none;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        button:hover {
+        #playButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #playButton:hover {
             background-color: #45a049;
         }
-        input {
-            font-size: 1rem;
-            padding: 5px;
-            margin: 10px;
-            width: 50px;
+        #stopButton {
+            background-color: #f44336;
+            color: white;
+            display: none;
         }
-        label {
-            font-size: 1rem;
+        #stopButton:hover {
+            background-color: #d32f2f;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        เสียงลูกแก้วกระทบกัน<br/>
-        <label for="count">จำนวนครั้ง:</label>
-        <input type="number" id="count" min="1" max="100" value="20">
+        <h1>เสียงลูกแก้วกระทบกัน</h1>
         <button id="playButton">เล่นเสียง</button>
+        <button id="stopButton">หยุดเล่นเสียง</button>
     </div>
 
     <script>
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let isPlaying = false;
+        let playInterval;
 
         function createGlassSound(duration = 0.1, frequency = 1000) {
             const oscillator = audioContext.createOscillator();
@@ -75,16 +77,31 @@
         }
 
         function playGlassBeadsSound() {
-            const count = parseInt(document.getElementById('count').value);
-            for (let i = 0; i < count; i++) {
-                setTimeout(() => {
-                    const frequency = 650 + Math.random() * 600;
-                    createGlassSound(0.1, frequency);
-                }, i * (110 + Math.random() * 20));
+            const frequency = 650 + Math.random() * 600;
+            createGlassSound(0.08 + Math.random() * 0.4, frequency);
+        }
+
+        function startPlaying() {
+            if (!isPlaying) {
+                isPlaying = true;             
+                document.getElementById('playButton').style.display = 'none';
+                document.getElementById('stopButton').style.display = 'inline-block';
+
+playInterval = setInterval(playGlassBeadsSound,      (110 + Math.random() * 20));
             }
         }
 
-        document.getElementById('playButton').addEventListener('click', playGlassBeadsSound);
+        function stopPlaying() {
+            if (isPlaying) {
+                isPlaying = false;
+                clearInterval(playInterval);
+                document.getElementById('playButton').style.display = 'inline-block';
+                document.getElementById('stopButton').style.display = 'none';
+            }
+        }
+
+        document.getElementById('playButton').addEventListener('click', startPlaying);
+        document.getElementById('stopButton').addEventListener('click', stopPlaying);
     </script>
 </body>
 </html>
