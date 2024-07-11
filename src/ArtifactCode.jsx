@@ -55,8 +55,10 @@ useEffect(() => {
 
     setAudioContext(context);
 
-    return () => if (context.state !== 'closed') context.close();  
-    
+    return () => {
+ if (context.state !== 'closed') context.close();  
+ }
+   
   }, []);
 
 
