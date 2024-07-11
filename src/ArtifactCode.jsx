@@ -66,7 +66,7 @@ useEffect(() => {
     if (!audioContext) return;
 
 const duration = 0.06 + Math.random() * 0.08;
-const freq = 600 + Math.random() * 400;
+const freq = 700 + Math.random() * 600;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -183,8 +183,7 @@ setBalls(45);
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
         <div className="text-center">
           {translations.language.map((lang, index) => (
-            <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}>
-   <Button onClick={() => setLanguage(index)}>{lang}</Button>
+            <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}  onClick={setLanguage(index)}>{lang}
             </span>
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
