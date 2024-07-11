@@ -37,12 +37,14 @@ export default function GachaSimulator() {
   const [capsuleColor, setCapsuleColor] = useState(0);
   const [language, setLanguage] = useState(0);
 
-  const [isPlaying, setIsPlaying] = useState(false);
   const [audioContext, setAudioContext] = useState(null);
 
 
   const playGlassBeadsSound = useCallback(() => {
-    if (!audioContext) return;
+    if (!audioContext) {
+window.alert("no ac");
+return;
+}
 
 const duration = 
 0.06 + Math.random() * 0.08;
@@ -68,6 +70,7 @@ const freq =
 
   
   const playGlassBeadsSounds = useCallback(() => {
+window.alert("play s");
 
       for (let i = 0; i < 3; i++) {
         const timeoutId = setTimeout(() => {
