@@ -66,7 +66,7 @@ new (window.AudioContext || window.webkitAudioContext)();
 const duration = 
 0.06 + Math.random() * 0.08;
 const freq = 
-600 + Math.random() * 600;
+500 + Math.random() * 600;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -114,7 +114,7 @@ playGlassBeadsSounds();
 
       const interval = setInterval(() => {
 
-if ( Math.random() < 0.3 ) {
+if ( Math.random() < 0.4 ) {
 
         position += 1;
         setBallPosition(position);
@@ -123,8 +123,8 @@ if ( Math.random() < 0.3 ) {
 
 setBallSlide(
 (prev) => Math.random() < 0.5 ?
- ( prev < 20 ? prev += 5 : prev -= 5 ) :
-( prev > 80 ? prev -= 5 : prev += 5 ) 
+ ( prev < 15 ? prev += 5 : prev -= 5 ) :
+( prev > 85 ? prev -= 5 : prev += 5 ) 
 )
 
 }
@@ -220,12 +220,15 @@ clearInterval(intervalId);
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
                 style={{ 
-top: stage === 'dispensing' ? `${ballPosition}%` : '83%' ,
+top: stage === 'dispensing' ? `${ballPosition}%` : '84%' ,
 left: stage === 'dispensing' ? `${ballSlide}%` : '50%' 
 }}
                 onClick={openBall}
               >
-                {stage === 'result' ? result.emoji : ''}
+                {stage === 'result' ? 
+result.emoji :
+ items[Math.floor(Math.random() * items.length)].emoji
+}
               </div>
             )}
           </div>
