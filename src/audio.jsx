@@ -1,30 +1,17 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Play, Pause } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 
 const GlassBeadsSoundPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioContext, setAudioContext] = useState(null);
-  const [playCount, setPlayCount] = useState(0);
+  
 
   useEffect(() => {
     const context = new (window.AudioContext || window.webkitAudioContext)();
     setAudioContext(context);
 
-const timeoutIds = [];
-
-      for (let i = 0; i < 20; i++) {
-        const timeoutId = setTimeout(() => {
-          playGlassBeadsSound();
-          if (i === 5) window.alert("555");
-        }, i * 300);
-        timeoutIds.push(timeoutId);
-      }
-
-
     return () => {
-      
-timeoutIds.forEach(id => clearTimeout(id));
       
     };
   }, []);
@@ -68,9 +55,6 @@ timeoutIds.forEach(id => clearTimeout(id));
   }, [isPlaying, playCount, playGlassBeadsSound]);
 
   const togglePlay = () => {
-    if (!isPlaying) {
-      setPlayCount(0);
-    }
     setIsPlaying(!isPlaying);
   };
 
@@ -79,14 +63,12 @@ timeoutIds.forEach(id => clearTimeout(id));
       <h1 className="text-2xl font-bold mb-4">เครื่องเล่นเสียงลูกแก้วกระทบกัน (20 ครั้ง)</h1>
       <Button
         onClick={togglePlay}
-        className={`px-4 py-2 rounded ${
-          isPlaying ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
-        } text-white font-bold`}
+        className={`px-4 py-2 rounded bg-green-500 text-white font-bold`}
       >
-        {isPlaying ? <Pause className="mr-2" /> : <Play className="mr-2" />}
-        {isPlaying ? 'หยุดเล่น' : 'เล่นเสียง'}
+        
+        {isPlaying ? 'หยุดเล่น!' : 'เล่นเสียง!'}
       </Button>
-      <p className="mt-4">จำนวนครั้งที่เล่น: {playCount} / 20</p>
+      
     </div>
   );
 };
