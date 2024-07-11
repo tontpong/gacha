@@ -21,6 +21,7 @@ const items = [
 ];
 
 const ballColors = ['bg-red-300', 'bg-blue-300', 'bg-green-300', 'bg-yellow-300', 'bg-purple-300'];
+
 const borderColors = ['border-red-500', 'border-blue-500', 'border-green-500', 'border-yellow-500', 'border-purple-500'];
 
 const translations = {
@@ -35,14 +36,15 @@ const translations = {
 
 
 export default function GachaSimulator() {
-  const [balls, setBalls] = useState(45);
-  const [result, setResult] = useState(itemHint);
-  const [stage, setStage] = useState('ready'); // 'ready', 'dispensing', 'opening', 'result'
+ const [stage, setStage] = useState('ready'); 
+// 'ready', 'dispensing', 'opening', 'result'
 
+const [balls, setBalls] = useState(45);
+const [result, setResult] = useState(itemHint);
   const [ballPosition, setBallPosition] = useState(0);
 const [ballSlide, setBallSlide] = useState(50);
-
   const [capsuleColor, setCapsuleColor] = useState(0);
+
   const [language, setLanguage] = useState(0);
 
   const [audioContext, setAudioContext] = useState(null);
@@ -69,7 +71,7 @@ new (window.AudioContext || window.webkitAudioContext)();
 const duration = 
 0.06 + Math.random() * 0.08;
 const freq = 
-500 + Math.random() * 500;
+500 + Math.random() * 400;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -126,16 +128,14 @@ if ( Math.random() < 0.4 ) {
 
 setBallSlide(
 (prev) => Math.random() < 0.5 ?
- ( prev < 15 ? prev += 5 : prev -= 5 ) :
-( prev > 85 ? prev -= 5 : prev += 5 ) 
+ ( prev < 20 ? prev += 5 : prev -= 5 ) :
+( prev > 80 ? prev -= 5 : prev += 5 ) 
 )
 
 }
 
 setCapsuleColor(Math.floor(Math.random() * ballColors.length));
-
-const randomItem = items[Math.floor(Math.random() * items.length)];
-      setResult(randomItem);
+      setResult(items[Math.floor(Math.random() * items.length)]);
 
         if (position >= 100) 
           setStage('opening');
@@ -157,8 +157,9 @@ setResult(itemHint);
   
     if (balls > 0 && stage === 'ready') {
       setBalls(balls - 1);
-      setStage('dispensing');
-      setResult(itemHint);
+setResult(itemHint);
+
+      setStage('dispensing');    
     }
 
   };
@@ -166,9 +167,8 @@ setResult(itemHint);
 
   const openBall = () => {
 
-    if (stage === 'opening') {
-      const randomItem = items[Math.floor(Math.random() * items.length)];
-      setResult(randomItem);
+    if (stage === 'opening') {      setResult(items[Math.floor(Math.random() * items.length)]);
+
       setStage('result');
     }
 
