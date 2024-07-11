@@ -94,7 +94,7 @@ window.alert("play s");
 const context = new (window.AudioContext || window.webkitAudioContext)();
 if (!audioContext) 
 window.alert("no ac create");
-if (audioContext) {
+if (audioContext) 
 window.alert("create ac");
 
     setAudioContext(context);
