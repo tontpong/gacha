@@ -92,6 +92,11 @@ window.alert("play s");
       let position = 0;
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
+if (!audioContext) 
+window.alert("no ac create");
+if (audioContext) {
+window.alert("create ac");
+
     setAudioContext(context);
     
     const  intervalId = setInterval(playGlassBeadsSounds, 250);
