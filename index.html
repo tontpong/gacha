@@ -13,6 +13,57 @@
     />
     <title>Claude Artifacts React</title>
   </head>
+
+<!-- 
+
+import React, { useState, useEffect, useCallback } from 'react';
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audioContext, setAudioContext] = useState(null);
+
+  useEffect(() => {
+    const context = new (window.AudioContext || window.webkitAudioContext)();
+    setAudioContext(context);
+
+    return () => {
+      if (context.state !== 'closed') {
+        context.close();
+      }
+    };
+  }, []);
+
+  const playGlassBeadsSound = useCallback(() => {
+    if (!audioContext) return;
+
+const duration = 
+0.06 + Math.random() * 0.08;
+const freq = 
+730 + Math.random() * 600;
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+  }, [audioContext]);
+
+  useEffect(() => {
+    let intervalId;
+    if (isPlaying) {
+      intervalId = setInterval(playGlassBeadsSound, 300);
+    }
+    return () => clearInterval(intervalId);
+
+-->
  
     <script>
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -68,8 +119,8 @@ playInterval = setInterval(
         }
 
     </script>
- <body onload="startPlaying()">
-    <div id="root"></div><button onclick="startPlaying()">a</button><button onclick="stopPlaying()">b</button>
+ <body>
+    <div id="root"></div>
     <script
       type="module"
       src="/src/main.jsx"
