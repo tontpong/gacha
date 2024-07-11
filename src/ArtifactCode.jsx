@@ -81,13 +81,15 @@ const freq =
 
   
   const playGlassBeadsSounds = () => {
+    const timeoutIds = [];
 
       for (let i = 0; i < 3; i++) {
 
         const timeoutId = setTimeout(() => {
       playGlassBeadsSound();        
    }, i * (30 + Math.random() * 80));
-        
+              timeoutIds.push(timeoutId);
+
       }
 
   };
@@ -110,7 +112,7 @@ playGlassBeadsSounds();
           clearInterval(interval);
           setStage('opening');
         }
-      }, 100);
+      }, 50);
 
 return () => {
 clearInterval(interval);
