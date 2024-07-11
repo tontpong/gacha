@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -54,7 +54,7 @@ new (window.AudioContext || window.webkitAudioContext)();
   }, []);
 
 
-  const playGlassBeadsSound = useCallback(() => {
+  const playGlassBeadsSound = () => {
 
     if (!audioContext) return;
 
@@ -78,10 +78,10 @@ const freq =
     oscillator.start();
     oscillator.stop(audioContext.currentTime + duration);
 
-  }, [audioContext]);
+  };
 
   
-  const playGlassBeadsSounds = useCallback(() => {
+  const playGlassBeadsSounds = () => {
 
       for (let i = 0; i < 3; i++) {
 
@@ -91,7 +91,7 @@ const freq =
         
       }
 
-  }, [ playGlassBeadsSound]);
+  };
   
 
   useEffect(() => {
@@ -164,7 +164,7 @@ clearInterval(intervalId);
       <SpeedInsights/>
       <Analytics/>
 
-       <Button onClick={playGlassBeadsSounds}> alofthha </Button>
+       <Button onClick={playGlassBeadsSounds}> alofdghethha </Button>
 
       <div className="flex justify-between items-center mb-4">
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
