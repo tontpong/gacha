@@ -40,15 +40,18 @@ export default function GachaSimulator() {
   useEffect(() => {
     if (stage === 'dispensing') {
       let position = 0;
+window.startPlaying();
       const interval = setInterval(() => {
         position += 5;
         setBallPosition(position);
         setCapsuleColor((prev) => (prev + 1) % ballColors.length);
         if (position >= 100) {
+window.stopPlaying();
           clearInterval(interval);
           setStage('opening');
         }
       }, 50);
+window.stopPlaying();
       return () => clearInterval(interval);
     }
   }, [stage]);
