@@ -52,7 +52,7 @@ const GlassBeadsSoundPlayer = () => {
         timeoutIds.forEach(id => clearTimeout(id));
       };
     
-  }, [playGlassBeadsSound]);
+  }, [playGlassBeadsSound,isPlaying]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
