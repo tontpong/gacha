@@ -26,7 +26,7 @@ const translations = {
   open: ['開ける', 'Open Ball', 'เปิดลูกบอล', '打开'],
   reset: ['リセット', 'Reset', 'เริ่มเล่นใหม่', '重置'],
   result: ['結果：', 'Result:', 'คุณได้:', '结果：'],
-  language: ['言語', 'Languagge', 'ภาษา', '语言']
+  language: ['言語', 'Language', 'ภาษา', '语言']
 };
 
 export default function GachaSimulator() {
@@ -40,18 +40,18 @@ export default function GachaSimulator() {
   useEffect(() => {
     if (stage === 'dispensing') {
       let position = 0;
-window.startPlaying();
+
       const interval = setInterval(() => {
         position += 5;
         setBallPosition(position);
         setCapsuleColor((prev) => (prev + 1) % ballColors.length);
         if (position >= 100) {
-window.stopPlaying();
+
           clearInterval(interval);
           setStage('opening');
         }
-      }, 50);
-window.stopPlaying();
+      }, 100);
+
       return () => clearInterval(interval);
     }
   }, [stage]);
@@ -100,7 +100,7 @@ window.stopPlaying();
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
         <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
-<div><input type='button' onclick='startPlaying()' value='wssha' />......<input type='button' onclick="stopPlaying()" value='bbbbb' /></div>
+
       </div>
       <Card>
         <CardHeader>
