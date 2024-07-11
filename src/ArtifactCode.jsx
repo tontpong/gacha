@@ -150,12 +150,13 @@ setResult(itemHint);
 }
 
 
-  const openBall = () => 
-    if (stage === 'opening') {      setResult(items[Math.floor(Math.random() * items.length)]);
+  const openBall = () => {
+    if (stage === 'opening' {      
+setResult(items[Math.floor(Math.random() * items.length)]);
 
       setStage('result');
-     };
-
+     }
+}
 
   const reset = () => {
     setStage('ready');
@@ -169,7 +170,6 @@ setBalls(45);
   const changeLanguage = (direction) => 
     setLanguage((prev) => (prev + direction + 4) % 4);
   
-
 
   return (    
  <div className="p-4 max-w-md mx-auto">
