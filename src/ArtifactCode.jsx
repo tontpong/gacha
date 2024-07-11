@@ -103,13 +103,14 @@ const freq =
   
 
   useEffect(() => {
+
     if (stage === 'dispensing') {
       let position = 0;
     setBallSlide(50);
 
-    const  intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
 playGlassBeadsSounds();
-}, 100);
+}, 110);
 
       const interval = setInterval(() => {
 
@@ -122,8 +123,8 @@ if ( Math.random() < 0.3 ) {
 
 setBallSlide(
 (prev) => Math.random() < 0.5 ?
- ( prev < 15 ? prev += 5 : prev -= 5 ) :
-( prev > 95 ? prev -= 5 : prev += 5 ) 
+ ( prev < 20 ? prev += 5 : prev -= 5 ) :
+( prev > 80 ? prev -= 5 : prev += 5 ) 
 )
 
 }
@@ -219,7 +220,7 @@ clearInterval(intervalId);
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
                 style={{ 
-top: stage === 'dispensing' ? `${ballPosition}%` : '85%' ,
+top: stage === 'dispensing' ? `${ballPosition}%` : '83%' ,
 left: stage === 'dispensing' ? `${ballSlide}%` : '50%' 
 }}
                 onClick={openBall}
