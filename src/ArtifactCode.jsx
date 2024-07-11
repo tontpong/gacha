@@ -100,10 +100,10 @@ const freq =
     
     const  intervalId = setInterval(() => {
 playGlassBeadsSounds();
-}, 250);
+}, 150);
 
       const interval = setInterval(() => {
-        position += 5;
+        position += 1;
         setBallPosition(position);
         setCapsuleColor((prev) => (prev + 1) % ballColors.length);
         if (position >= 100) {
@@ -163,8 +163,6 @@ clearInterval(intervalId);
  <div className="p-4 max-w-md mx-auto">
       <SpeedInsights/>
       <Analytics/>
-
-       <Button onClick={playGlassBeadsSounds}> alofdghethha </Button>
 
       <div className="flex justify-between items-center mb-4">
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
