@@ -245,12 +245,14 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
             <Button onClick={openBall} className="w-full mb-2">{translations.open[language]}</Button>
           )}
 
-          {result && (
+          {stage === 'result' && (
             <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}</p>
           )}
+
           {stage !== 'ready' && (
             <Button onClick={reset} className="w-full mb-2">{translations.reset[language]}</Button>
           )}
+
         </CardContent>
       </Card>
     </div>
