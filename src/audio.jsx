@@ -50,18 +50,13 @@ timeoutIds.forEach(id => clearTimeout(id));
   }, [audioContext]);
 
   useEffect(() => {
-    if (isPlaying && playCount < 20) {
+    
       const timeoutIds = [];
 
-      for (let i = 0; i < 20 - playCount; i++) {
+      for (let i = 0; i < 20; i++) {
         const timeoutId = setTimeout(() => {
           playGlassBeadsSound();
-          setPlayCount(prevCount => {
-            if (prevCount + 1 >= 20) {
-              setIsPlaying(false);
-            }
-            return prevCount + 1;
-          });
+          
         }, i * 300);
         timeoutIds.push(timeoutId);
       }
@@ -69,7 +64,7 @@ timeoutIds.forEach(id => clearTimeout(id));
       return () => {
         timeoutIds.forEach(id => clearTimeout(id));
       };
-    }
+    
   }, [isPlaying, playCount, playGlassBeadsSound]);
 
   const togglePlay = () => {
