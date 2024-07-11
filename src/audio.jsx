@@ -19,21 +19,25 @@ const GlassBeadsSoundPlayer = () => {
   const playGlassBeadsSound = useCallback(() => {
     if (!audioContext) return;
 
+    const duration = 
+0.06 + Math.random() * 0.08;
+const freq = 
+730 + Math.random() * 600;
+
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
 
     oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(2000, audioContext.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(20, audioContext.currentTime + 0.1);
+    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
 
-    gainNode.gain.setValueAtTime(0.8, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
 
     oscillator.connect(gainNode);
     gainNode.connect(audioContext.destination);
 
     oscillator.start();
-    oscillator.stop(audioContext.currentTime + 0.1);
+    oscillator.stop(audioContext.currentTime + duration);
   }, [audioContext]);
 
   useEffect(() => {
