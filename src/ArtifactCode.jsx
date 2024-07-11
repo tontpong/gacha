@@ -183,7 +183,7 @@ setBalls(45);
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
         <div className="text-center">
           {translations.language.map((lang, index) => (
-            <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}  onClick={setLanguage(index)}>{lang}
+            <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}  onClick={() => setLanguage(index)}>{lang}
             </span>
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
