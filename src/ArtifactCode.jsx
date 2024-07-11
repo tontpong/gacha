@@ -66,7 +66,7 @@ useEffect(() => {
     if (!audioContext) return;
 
 const duration = 0.06 + Math.random() * 0.08;
-const freq = 500 + Math.random() * 900;
+const freq = 450 + Math.random() * 850;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -174,36 +174,22 @@ setBalls(45);
 
   return (    
  <div className="p-4 max-w-md mx-auto">
-
-      <SpeedInsights/>
-      <Analytics/>
-
       <div className="flex justify-between items-center mb-4">
-
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
-        <div className="text-center">
-          {translations.language.map((lang, index) => (
+        <div className="text-center">          {translations.language.map((lang, index) => (
             <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}  onClick={() => setLanguage(index)}>{lang}
             </span>
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
         <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
-
       </div>
-
       <Card>
-
         <CardHeader>          <CardTitle>{translations.title[language]}</CardTitle>
         </CardHeader>
-
         <CardContent>
-
           <div className="mb-4 h-80 bg-gray-200 relative overflow-hidden">
-
             <div className="absolute inset-0 border-4 border-gray-400 rounded-lg"></div>
-
             {Array.from({ length: balls }).map((_, index) => (
-
               <div
                 key={index}
                 className={`absolute w-6 h-6 ${ballColors[index % ballColors.length]} ${borderColors[index % borderColors.length]} border-2 rounded-full`}
@@ -212,11 +198,8 @@ setBalls(45);
      top: `${Math.random() * 60 + 10}%`
                 }}
               ></div>
-
             ))}
-
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-300 border-t-4 border-gray-400"></div>
-
             {stage !== 'ready' && (
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
@@ -229,7 +212,6 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
                 { result.emoji }
               </div>
             )}
-
           </div>
 
           <Button 
@@ -257,6 +239,9 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
 
         </CardContent>
       </Card>
+
+      <SpeedInsights/>
+      <Analytics/>
     </div>
   );
 
