@@ -59,7 +59,9 @@ const freq =
  }, [audioContext]);
 
    useEffect(() => { 
-playGlassBeadsSounds
+playGlassBeadsSounds();
+playGlassBeadsSounds();
+playGlassBeadsSounds();
   }, [ playGlassBeadsSounds, isPlaying]);
 
   const togglePlay = () => {
