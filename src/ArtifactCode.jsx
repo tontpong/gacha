@@ -66,7 +66,7 @@ useEffect(() => {
     if (!audioContext) return;
 
 const duration = 0.06 + Math.random() * 0.08;
-const freq = 600 + Math.random() * 800;
+const freq = 600 + Math.random() * 900;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -246,9 +246,11 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
 
           {stage === 'result' && (
             <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}</p>
+<p className="text-center text-gray-500 no-underline font-thin">.</p>
           )}
  {stage !== 'opening' && stage !== 'result' && (
-            <p className="text-center">.</p>
+<p className="text-center text-gray-500 no-underline font-thin">.</p>
+<p className="text-center text-gray-500 no-underline font-thin">.</p>
           )}
 
           {stage !== 'ready' && (
