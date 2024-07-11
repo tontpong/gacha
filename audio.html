@@ -49,7 +49,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>เสียงลูกแก้วกระทบกัน</h1>
+        เสียงลูกแก้วกระทบกัน<br/>
         <button id="playButton">เล่นเสียง</button>
         <button id="stopButton">หยุดเล่นเสียง</button>
     </div>
@@ -77,8 +77,15 @@
         }
 
         function playGlassBeadsSound() {
-            const frequency = 650 + Math.random() * 600;
-            createGlassSound(0.08 + Math.random() * 0.4, frequency);
+                        for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createGlassSound(
+0.06 + Math.random() * 0.08, 
+730 + Math.random() * 600
+                    );
+                }, 
+i * (30 + Math.random() * 80));
+            }
         }
 
         function startPlaying() {
@@ -87,7 +94,10 @@
                 document.getElementById('playButton').style.display = 'none';
                 document.getElementById('stopButton').style.display = 'inline-block';
 
-playInterval = setInterval(playGlassBeadsSound,      (110 + Math.random() * 20));
+playInterval = setInterval(
+  playGlassBeadsSound,      
+250
+);
             }
         }
 
@@ -104,4 +114,4 @@ playInterval = setInterval(playGlassBeadsSound,      (110 + Math.random() * 20))
         document.getElementById('stopButton').addEventListener('click', stopPlaying);
     </script>
 </body>
-</html>
+      </html>
