@@ -151,12 +151,13 @@ setResult(itemHint);
 
 
   const openBall = () => {
-    if (stage === 'opening' {      
+    if (stage === 'opening') {      
 setResult(items[Math.floor(Math.random() * items.length)]);
 
       setStage('result');
      }
 }
+
 
   const reset = () => {
     setStage('ready');
