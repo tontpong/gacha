@@ -115,7 +115,7 @@ playGlassBeadsSounds();
         setBallPosition(position);
 
 setBallSlide(
-(prev) ==> Math.random() < 0.5 ?
+(prev) => Math.random() < 0.5 ?
  ( prev < 5 ? prev = 0 : prev -= 5 ) :
 ( prev > 95 ? prev = 100 : prev += 5 ) 
 )
