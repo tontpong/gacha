@@ -39,26 +39,24 @@ export default function GachaSimulator() {
 
   const [audioContext, setAudioContext] = useState(null);
 
+
 useEffect(() => {
-    const context = new (window.AudioContext || window.webkitAudioContext)();
-if (!audioContext) 
-window.alert("no ac create");
-if (audioContext) 
-window.alert("create ac");
+    const context = 
+new (window.AudioContext || window.webkitAudioContext)();
 
     setAudioContext(context);
+
     return () => {
-      if (context.state !== 'closed') {
-        context.close();
-      }
+      if (context.state !== 'closed') 
+        context.close();  
     };
+
   }, []);
 
+
   const playGlassBeadsSound = useCallback(() => {
-    if (!audioContext) {
-window.alert("no ac");
-return;
-}
+
+    if (!audioContext) return;
 
 const duration = 
 0.06 + Math.random() * 0.08;
@@ -79,27 +77,22 @@ const freq =
 
     oscillator.start();
     oscillator.stop(audioContext.currentTime + duration);
-  }, [audioContext]);
 
+  }, [audioContext]);
 
   
   const playGlassBeadsSounds = useCallback(() => {
-window.alert("play s");
 
       for (let i = 0; i < 3; i++) {
+
         const timeoutId = setTimeout(() => {
-          playGlassBeadsSound();
-          
+          playGlassBeadsSound();        
         }, i * (30 + Math.random() * 80));
         
       }
 
   }, [ playGlassBeadsSound]);
   
-
- 
-    
-
 
   useEffect(() => {
     if (stage === 'dispensing') {
@@ -122,10 +115,10 @@ return () => {
 clearInterval(interval);
 clearInterval(intervalId);
     };
-
       
     }
   }, [stage]);
+
 
   const playGacha = () => {
    setCapsuleColor(Math.floor(Math.random() * ballColors.length));
@@ -135,15 +128,20 @@ clearInterval(intervalId);
       setStage('dispensing');
       setResult(null);
     }
+
   };
 
+
   const openBall = () => {
+
     if (stage === 'opening') {
       const randomItem = items[Math.floor(Math.random() * items.length)];
       setResult(randomItem);
       setStage('result');
     }
+
   };
+
 
   const reset = () => {
     setBalls(45);
@@ -152,9 +150,11 @@ clearInterval(intervalId);
     setBallPosition(0);
   };
 
+
   const changeLanguage = (direction) => {
     setLanguage((prev) => (prev + direction + 4) % 4);
   };
+
 
   return (
        
