@@ -40,9 +40,10 @@ const freq =
     oscillator.stop(audioContext.currentTime + duration);
   }, [audioContext]);
 
-  useEffect(() => {
+  
     
-      const timeoutIds = [];
+  const playGlassBeadsSounds = useCallback(() => {
+    const timeoutIds = [];
 
       for (let i = 0; i < 10; i++) {
         const timeoutId = setTimeout(() => {
@@ -55,8 +56,11 @@ const freq =
       return () => {
         timeoutIds.forEach(id => clearTimeout(id));
       };
-    
-  }, [ playGlassBeadsSound, isPlaying]);
+ }, [audioContext]);
+
+   useEffect(() => { 
+playGlassBeadsSounds
+  }, [ playGlassBeadsSounds, isPlaying]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -71,7 +75,7 @@ const freq =
       >      
         {isPlaying ? 'หยุดเล่น!' : 'เล่นเสียง!'}
       </Button>
-       <Button onClick={playGlassBeadsSound}> alofthha </Button>
+       <Button onClick={playGlassBeadsSounds}> altfofthha </Button>
     </div>
   );
 };
