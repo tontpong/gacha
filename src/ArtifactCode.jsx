@@ -134,6 +134,9 @@ setBallSlide(
 
 setCapsuleColor(Math.floor(Math.random() * ballColors.length));
 
+const randomItem = items[Math.floor(Math.random() * items.length)];
+      setResult(randomItem);
+
         if (position >= 100) 
           setStage('opening');
         
