@@ -39,6 +39,20 @@ export default function GachaSimulator() {
 
   const [audioContext, setAudioContext] = useState(null);
 
+useEffect(() => {
+    const context = new (window.AudioContext || window.webkitAudioContext)();
+if (!audioContext) 
+window.alert("no ac create");
+if (audioContext) 
+window.alert("create ac");
+
+    setAudioContext(context);
+    return () => {
+      if (context.state !== 'closed') {
+        context.close();
+      }
+    };
+  }, []);
 
   const playGlassBeadsSound = useCallback(() => {
     if (!audioContext) {
@@ -90,14 +104,6 @@ window.alert("play s");
   useEffect(() => {
     if (stage === 'dispensing') {
       let position = 0;
-
-const context = new (window.AudioContext || window.webkitAudioContext)();
-if (!audioContext) 
-window.alert("no ac create");
-if (audioContext) 
-window.alert("create ac");
-
-    setAudioContext(context);
     
     const  intervalId = setInterval(playGlassBeadsSounds, 250);
 
@@ -113,9 +119,6 @@ window.alert("create ac");
       }, 100);
 
 return () => {
-      if (context.state !== 'closed') {
-        context.close();
-      }
 clearInterval(interval);
 clearInterval(intervalId);
     };
