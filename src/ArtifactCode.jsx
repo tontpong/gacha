@@ -92,6 +92,10 @@ const freq =
 
       }
 
+      return () => {
+        timeoutIds.forEach(id => clearTimeout(id));
+      };
+
   };
   
 
