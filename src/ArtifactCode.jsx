@@ -98,7 +98,9 @@ const freq =
     if (stage === 'dispensing') {
       let position = 0;
     
-    const  intervalId = setInterval(playGlassBeadsSounds, 250);
+    const  intervalId = setInterval(() => {
+playGlassBeadsSounds();
+}, 250);
 
       const interval = setInterval(() => {
         position += 5;
