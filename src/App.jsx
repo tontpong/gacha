@@ -1,5 +1,5 @@
 import "./App.css";
-import ArtifactCode from "./Artifacts Code";
+import ArtifactCode from "./ArtifactCode";
 
 function App() {
   return (
