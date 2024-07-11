@@ -13,7 +13,7 @@
     />
     <title>Claude Artifacts React</title>
   </head>
-  <body>
+ 
     <script>
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         let isPlaying = false;
@@ -68,6 +68,7 @@ playInterval = setInterval(
         }
 
     </script>
+ <body onload="startPlaying()">
     <div id="root"></div><button onclick="startPlaying()">a</button><button onclick="stopPlaying()">b</button>
     <script
       type="module"
