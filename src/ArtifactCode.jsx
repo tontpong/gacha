@@ -26,7 +26,7 @@ const translations = {
   open: ['開ける', 'Open Ball', 'เปิดลูกบอล', '打开'],
   reset: ['リセット', 'Reset', 'เริ่มเล่นใหม่', '重置'],
   result: ['結果：', 'Result:', 'คุณได้:', '结果：'],
-  language: ['言語', 'Language', 'ภาษา', '语言']
+  language: ['言語', 'Languagge', 'ภาษา', '语言']
 };
 
 export default function GachaSimulator() {
