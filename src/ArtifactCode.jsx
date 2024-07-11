@@ -1,9 +1,10 @@
+import { SpeedInsights } from "@vercel/speed-insights/react"
+import { Analytics } from "@vercel/analytics/react"
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { Analytics } from "@vercel/analytics/react"
 
 
 const itemHint = 
@@ -173,16 +174,10 @@ setBalls(45);
   
 
   return (    
- <div className="p-4 max-w-md mx-auto">
-      <div className="flex justify-between items-center mb-4">
-        <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
-        <div className="text-center">          {translations.language.map((lang, index) => (
+<div className="p-4 max-w-md mx-auto"><div className="flex justify-between items-center mb-4"><Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button><div className="text-center">          {translations.language.map((lang, index) => (
             <span key={index} className={language === index ? 'text-blue-500 underline font-black' : 'text-gray-500 no-underline font-thin'}  onClick={() => setLanguage(index)}>{lang}
             </span>
-          )).reduce((prev, curr) => [prev, ' / ', curr])}
-        </div>
-        <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
-      </div>
+          )).reduce((prev, curr) => [prev, ' / ', curr])}</div><Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button></div>
       <Card>
         <CardHeader>          <CardTitle>{translations.title[language]}</CardTitle>
         </CardHeader>
