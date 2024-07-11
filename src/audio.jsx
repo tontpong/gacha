@@ -67,7 +67,7 @@ const GlassBeadsSoundPlayer = () => {
       >      
         {isPlaying ? 'หยุดเล่น!' : 'เล่นเสียง!'}
       </Button>
-       <Button onClick={togglePlay}> alothha </Button>
+       <Button onClick={playGlassBeadsSound}> alothha </Button>
     </div>
   );
 };
