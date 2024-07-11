@@ -14,6 +14,60 @@
     <title>Claude Artifacts React</title>
   </head>
   <body>
+    <script>
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let isPlaying = false;
+        let playInterval;
+
+        function createGlassSound(duration = 0.1, frequency = 1000) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.type = 'sine';
+            oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+
+            gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        function playGlassBeadsSound() {
+                        for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createGlassSound(
+0.06 + Math.random() * 0.08, 
+730 + Math.random() * 600
+                    );
+                }, 
+i * (30 + Math.random() * 80));
+            }
+        }
+
+        function startPlaying() {
+            if (!isPlaying) {
+                isPlaying = true;             
+                
+playInterval = setInterval(
+  playGlassBeadsSound,      
+250
+);
+            }
+        }
+
+        function stopPlaying() {
+            if (isPlaying) {
+                isPlaying = false;
+                clearInterval(playInterval);
+                
+            }
+        }
+
+    </script>
     <div id="root"></div>
     <script
       type="module"
