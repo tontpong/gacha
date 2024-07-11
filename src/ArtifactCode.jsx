@@ -144,9 +144,10 @@ setResult(itemHint);
   }, [stage]);
 
 
-  const playGacha = () =>  
+  const playGacha = () => {
     if (balls > 0 && stage === 'ready') 
       setStage('dispensing');    
+}
 
 
   const openBall = () => 
@@ -257,4 +258,3 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
   );
 
   }
-            
