@@ -16,8 +16,7 @@ const timeoutIds = [];
       for (let i = 0; i < 20; i++) {
         const timeoutId = setTimeout(() => {
           playGlassBeadsSound();
-          
-
+          if (i === 5) window.alert("555");
         }, i * 300);
         timeoutIds.push(timeoutId);
       }
