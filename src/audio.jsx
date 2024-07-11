@@ -52,7 +52,7 @@ const GlassBeadsSoundPlayer = () => {
         timeoutIds.forEach(id => clearTimeout(id));
       };
     
-  }, [isPlaying ,playGlassBeadsSound]);
+  }, [ playGlassBeadsSound, isPlaying]);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -67,7 +67,7 @@ const GlassBeadsSoundPlayer = () => {
       >      
         {isPlaying ? 'หยุดเล่น!' : 'เล่นเสียง!'}
       </Button>
-       <Button onClick={playGlassBeadsSound}> alothha </Button>
+       <Button onClick={playGlassBeadsSound}> alofthha </Button>
     </div>
   );
 };
