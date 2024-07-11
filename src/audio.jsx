@@ -40,7 +40,7 @@ const GlassBeadsSoundPlayer = () => {
     
       const timeoutIds = [];
 
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 10; i++) {
         const timeoutId = setTimeout(() => {
           playGlassBeadsSound();
           
@@ -67,7 +67,7 @@ const GlassBeadsSoundPlayer = () => {
       >      
         {isPlaying ? 'หยุดเล่น!' : 'เล่นเสียง!'}
       </Button>
-       <Button> alohha </Button>
+       <Button onClick={togglePlay}> alothha </Button>
     </div>
   );
 };
