@@ -1,5 +1,4 @@
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { Analytics } from "@vercel/analytics/react"
+
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -235,8 +234,7 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
         </CardContent>
       </Card>
 
-      <SpeedInsights/>
-      <Analytics/>
+     
     </div>
   );
 
