@@ -86,7 +86,8 @@ window.stopPlaying();
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+      <div id="rooot"><button onclick="startPlaying()">a</button><button onclick="stopPlaying()">b</button></div> 
+ <div className="p-4 max-w-md mx-auto">
       <SpeedInsights/>
       <Analytics/>
       <div className="flex justify-between items-center mb-4">
