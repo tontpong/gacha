@@ -35,7 +35,10 @@ export default function GachaSimulator() {
   const [balls, setBalls] = useState(45);
   const [result, setResult] = useState(null);
   const [stage, setStage] = useState('ready'); // 'ready', 'dispensing', 'opening', 'result'
+
   const [ballPosition, setBallPosition] = useState(0);
+const [ballSlide, setBallSlide] = useState(50);
+
   const [capsuleColor, setCapsuleColor] = useState(0);
   const [language, setLanguage] = useState(0);
 
@@ -105,18 +108,24 @@ const freq =
     
     const  intervalId = setInterval(() => {
 playGlassBeadsSounds();
-}, 150);
+}, 100);
 
       const interval = setInterval(() => {
         position += 1;
         setBallPosition(position);
-        setCapsuleColor((prev) => (prev + 1) % ballColors.length);
-        if (position >= 100) {
 
-          clearInterval(interval);
+setBallSlide(
+(prev) ==> Math.random() < 0.5 ?
+ ( prev < 5 ? prev = 0 : prev -= 5 ) :
+( prev > 95 ? prev = 100 : prev += 5 ) 
+)
+
+setCapsuleColor(Math.floor(Math.random() * ballColors.length));
+
+        if (position >= 100) {
           setStage('opening');
         }
-      }, 50);
+      }, 25);
 
 return () => {
 clearInterval(interval);
@@ -128,7 +137,6 @@ clearInterval(intervalId);
 
 
   const playGacha = () => {
-   setCapsuleColor(Math.floor(Math.random() * ballColors.length));
   
     if (balls > 0 && stage === 'ready') {
       setBalls(balls - 1);
@@ -193,8 +201,8 @@ clearInterval(intervalId);
                 key={index}
                 className={`absolute w-6 h-6 ${ballColors[index % ballColors.length]} ${borderColors[index % borderColors.length]} border-2 rounded-full`}
                 style={{
-                  left: `${Math.random() * 80 + 10}%`,
-                  top: `${Math.random() * 60 + 10}%`,
+     left: `${Math.random() * 80 + 10}%`,
+     top: `${Math.random() * 60 + 10}%`
                 }}
               ></div>
             ))}
@@ -202,7 +210,10 @@ clearInterval(intervalId);
             {stage !== 'ready' && (
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
-                style={{ bottom: stage === 'dispensing' ? `${ballPosition}%` : '0%' }}
+                style={{ 
+top: stage === 'dispensing' ? `${ballPosition}%` : '0%' ,
+left: stage === 'dispensing' ? `${ballSlide}%` : '50%' 
+}}
                 onClick={openBall}
               >
                 {stage === 'result' ? result.emoji : ''}
