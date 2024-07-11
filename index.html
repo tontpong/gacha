@@ -56,10 +56,30 @@ const freq =
     oscillator.stop(audioContext.currentTime + duration);
   }, [audioContext]);
 
+
+  useEffect(() => {
+    if (isPlaying) {
+      const timeoutIds = [];
+
+      for (let i = 0; i < 3; i++) {
+        const timeoutId = setTimeout(() => {
+          playGlassBeadsSound();
+          
+        }, i * (30 + Math.random() * 80));
+        timeoutIds.push(timeoutId);
+      }
+
+      return () => {
+        timeoutIds.forEach(id => clearTimeout(id));
+      };
+    }
+  }, [isPlaying, playCount, playGlassBeadsSound]);
+  
+
   useEffect(() => {
     let intervalId;
     if (isPlaying) {
-      intervalId = setInterval(playGlassBeadsSound, 300);
+      intervalId = setInterval(playGlassBeadsSound, 250);
     }
     return () => clearInterval(intervalId);
 
