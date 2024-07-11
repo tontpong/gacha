@@ -245,12 +245,10 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
           )}
 
           {stage === 'result' && (
-            <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}</p>
-<p className="text-center text-gray-500 no-underline font-thin">.</p>
+            <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}<br/></p>
           )}
  {stage !== 'opening' && stage !== 'result' && (
-<p className="text-center text-gray-500 no-underline font-thin">.</p>
-<p className="text-center text-gray-500 no-underline font-thin">.</p>
+<p className="text-center text-gray-500 no-underline font-thin">.<br/></p>
           )}
 
           {stage !== 'ready' && (
