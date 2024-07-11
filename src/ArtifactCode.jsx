@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 
+
 const items = [
   { name: ['犬', 'Dog', 'หมา', '狗'], emoji: '🐶' },
   { name: ['鳥', 'Bird', 'นก', '鸟'], emoji: '🐦' },
@@ -28,6 +29,7 @@ const translations = {
   result: ['結果：', 'Result:', 'คุณได้:', '结果：'],
   language: ['言語', 'Language', 'ภาษา', '语言']
 };
+
 
 export default function GachaSimulator() {
   const [balls, setBalls] = useState(45);
@@ -69,14 +71,11 @@ const freq =
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
 
-    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime); gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
 
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
+    oscillator.connect(gainNode);   gainNode.connect(audioContext.destination);
 
-    oscillator.start();
-    oscillator.stop(audioContext.currentTime + duration);
+    oscillator.start();   oscillator.stop(audioContext.currentTime + duration);
 
   };
 
@@ -86,8 +85,8 @@ const freq =
       for (let i = 0; i < 3; i++) {
 
         const timeoutId = setTimeout(() => {
-          playGlassBeadsSound();        
-        }, i * (30 + Math.random() * 80));
+      playGlassBeadsSound();        
+   }, i * (30 + Math.random() * 80));
         
       }
 
