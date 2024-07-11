@@ -86,7 +86,7 @@ window.stopPlaying();
   };
 
   return (
-      <div id="rooot"><button onclick="startPlaying()">a</button><button onclick="stopPlaying()">b</button></div> 
+       
  <div className="p-4 max-w-md mx-auto">
       <SpeedInsights/>
       <Analytics/>
@@ -100,6 +100,7 @@ window.stopPlaying();
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
         <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
+<div><button onclick="startPlaying()">a</button>......<button onclick="stopPlaying()">b</button></div>
       </div>
       <Card>
         <CardHeader>
