@@ -6,6 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 
 
+const itemHint = 
+  { name: ['?', '??', '???', '????'], emoji: '🎁' };
+
 const items = [
   { name: ['犬', 'Dog', 'หมา', '狗'], emoji: '🐶' },
   { name: ['鳥', 'Bird', 'นก', '鸟'], emoji: '🐦' },
@@ -33,7 +36,7 @@ const translations = {
 
 export default function GachaSimulator() {
   const [balls, setBalls] = useState(45);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState(itemHint);
   const [stage, setStage] = useState('ready'); // 'ready', 'dispensing', 'opening', 'result'
 
   const [ballPosition, setBallPosition] = useState(0);
@@ -66,7 +69,7 @@ new (window.AudioContext || window.webkitAudioContext)();
 const duration = 
 0.06 + Math.random() * 0.08;
 const freq = 
-500 + Math.random() * 600;
+500 + Math.random() * 500;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -139,7 +142,9 @@ setCapsuleColor(Math.floor(Math.random() * ballColors.length));
 return () => {
 clearInterval(interval);
 clearInterval(intervalId);
-    };
+
+setResult(itemHint);
+    }; 
       
     }
   }, [stage]);
@@ -150,7 +155,7 @@ clearInterval(intervalId);
     if (balls > 0 && stage === 'ready') {
       setBalls(balls - 1);
       setStage('dispensing');
-      setResult(null);
+      setResult(itemHint);
     }
 
   };
@@ -169,7 +174,7 @@ clearInterval(intervalId);
 
   const reset = () => {
     setBalls(45);
-    setResult(null);
+    setResult(itemHint);
     setStage('ready');
     setBallPosition(0);
   };
@@ -225,10 +230,7 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
 }}
                 onClick={openBall}
               >
-                {stage === 'result' ? 
-result.emoji :
- items[Math.floor(Math.random() * items.length)].emoji
-}
+                { result.emoji }
               </div>
             )}
           </div>
