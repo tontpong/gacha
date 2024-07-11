@@ -10,9 +10,23 @@ const GlassBeadsSoundPlayer = () => {
   useEffect(() => {
     const context = new (window.AudioContext || window.webkitAudioContext)();
     setAudioContext(context);
+
+const timeoutIds = [];
+
+      for (let i = 0; i < 20; i++) {
+        const timeoutId = setTimeout(() => {
+          playGlassBeadsSound();
+          
+
+        }, i * 300);
+        timeoutIds.push(timeoutId);
+      }
+
+
     return () => {
       if (context.state !== 'closed') {
         context.close();
+timeoutIds.forEach(id => clearTimeout(id));
       }
     };
   }, []);
