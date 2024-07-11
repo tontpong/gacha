@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -37,9 +37,61 @@ export default function GachaSimulator() {
   const [capsuleColor, setCapsuleColor] = useState(0);
   const [language, setLanguage] = useState(0);
 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audioContext, setAudioContext] = useState(null);
+
+
+  const playGlassBeadsSound = useCallback(() => {
+    if (!audioContext) return;
+
+const duration = 
+0.06 + Math.random() * 0.08;
+const freq = 
+730 + Math.random() * 600;
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+  }, [audioContext]);
+
+
+  
+  const playGlassBeadsSounds = useCallback(() => {
+
+      for (let i = 0; i < 3; i++) {
+        const timeoutId = setTimeout(() => {
+          playGlassBeadsSound();
+          
+        }, i * (30 + Math.random() * 80));
+        
+      }
+
+  }, [ playGlassBeadsSound]);
+  
+
+ 
+    
+
+
   useEffect(() => {
     if (stage === 'dispensing') {
       let position = 0;
+
+const context = new (window.AudioContext || window.webkitAudioContext)();
+    setAudioContext(context);
+    
+    const  intervalId = setInterval(playGlassBeadsSounds, 250);
 
       const interval = setInterval(() => {
         position += 5;
@@ -52,7 +104,15 @@ export default function GachaSimulator() {
         }
       }, 100);
 
-      return () => clearInterval(interval);
+return () => {
+      if (context.state !== 'closed') {
+        context.close();
+      }
+clearInterval(interval);
+clearInterval(intervalId);
+    };
+
+      
     }
   }, [stage]);
 
