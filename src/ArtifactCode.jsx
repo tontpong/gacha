@@ -25,7 +25,7 @@ const ballColors = ['bg-red-300', 'bg-blue-300', 'bg-green-300', 'bg-yellow-300'
 const borderColors = ['border-red-500', 'border-blue-500', 'border-green-500', 'border-yellow-500', 'border-purple-500'];
 
 const translations = {
-  title: ['ガチャポン機', 'Gacha Machine', 'เครื่องกาชาปอง', '扭蛋机'],
+  title: ['ガチャポン機', 'Chagapon Machine', 'เครื่องชากาปอง', '扭蛋机'],
   play: ['回す', 'Play', 'หมุนกาชาปอง', '扭蛋'],
   playing: ['プレイ中...', 'Playing...', 'กำลังเล่น...', '正在扭...'],
   open: ['開ける', 'Open Ball', 'เปิดลูกบอล', '打开'],
@@ -51,27 +51,20 @@ const [ballSlide, setBallSlide] = useState(50);
 
 
 useEffect(() => {
-    const context = 
-new (window.AudioContext || window.webkitAudioContext)();
+    const context = new (window.AudioContext || window.webkitAudioContext)();
 
     setAudioContext(context);
 
-    return () => {
-      if (context.state !== 'closed') 
-        context.close();  
-    };
-
+    return () => if (context.state !== 'closed') context.close();  
+    
   }, []);
 
 
   const playGlassBeadsSound = () => {
-
     if (!audioContext) return;
 
-const duration = 
-0.06 + Math.random() * 0.08;
-const freq = 
-500 + Math.random() * 400;
+const duration = 0.06 + Math.random() * 0.08;
+const freq = 500 + Math.random() * 400;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -79,9 +72,11 @@ const freq =
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
 
-    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime); gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
 
-    oscillator.connect(gainNode);   gainNode.connect(audioContext.destination);
+    oscillator.connect(gainNode);
+gainNode.connect(audioContext.destination);
 
     oscillator.start();   oscillator.stop(audioContext.currentTime + duration);
 
@@ -92,17 +87,14 @@ const freq =
     const timeoutIds = [];
 
       for (let i = 0; i < 3; i++) {
-
         const timeoutId = setTimeout(() => {
       playGlassBeadsSound();        
    }, i * (30 + Math.random() * 80));
-              timeoutIds.push(timeoutId);
 
+              timeoutIds.push(timeoutId);
       }
 
-      return () => {
-        timeoutIds.forEach(id => clearTimeout(id));
-      };
+      return () => timeoutIds.forEach(id => clearTimeout(id));
 
   };
   
@@ -112,27 +104,25 @@ const freq =
     if (stage === 'dispensing') {
       let position = 0;
     setBallSlide(50);
+setBalls(balls - 1);
+setResult(itemHint);
 
-    const intervalId = setInterval(() => {
+   const intervalId = setInterval(() => {
 playGlassBeadsSounds();
 }, 110);
 
-      const interval = setInterval(() => {
+   const interval = setInterval(() => {
 
 if ( Math.random() < 0.4 ) {
-
         position += 1;
         setBallPosition(position);
 
-} else {
-
+} else 
 setBallSlide(
 (prev) => Math.random() < 0.5 ?
  ( prev < 20 ? prev += 5 : prev -= 5 ) :
 ( prev > 80 ? prev -= 5 : prev += 5 ) 
-)
-
-}
+);
 
 setCapsuleColor(Math.floor(Math.random() * ballColors.length));
       setResult(items[Math.floor(Math.random() * items.length)]);
@@ -145,7 +135,6 @@ setCapsuleColor(Math.floor(Math.random() * ballColors.length));
 return () => {
 clearInterval(interval);
 clearInterval(intervalId);
-
 setResult(itemHint);
     }; 
       
@@ -153,48 +142,40 @@ setResult(itemHint);
   }, [stage]);
 
 
-  const playGacha = () => {
-  
-    if (balls > 0 && stage === 'ready') {
-      setBalls(balls - 1);
-setResult(itemHint);
-
+  const playGacha = () =>  
+    if (balls > 0 && stage === 'ready') 
       setStage('dispensing');    
-    }
-
-  };
 
 
-  const openBall = () => {
-
+  const openBall = () => 
     if (stage === 'opening') {      setResult(items[Math.floor(Math.random() * items.length)]);
 
       setStage('result');
-    }
-
-  };
+     };
 
 
   const reset = () => {
-    setBalls(45);
-    setResult(itemHint);
     setStage('ready');
+setBalls(45);
+    setResult(itemHint);
+    setBallSlide(50);
     setBallPosition(0);
   };
 
 
-  const changeLanguage = (direction) => {
+  const changeLanguage = (direction) => 
     setLanguage((prev) => (prev + direction + 4) % 4);
-  };
+  
 
 
-  return (
-       
+  return (    
  <div className="p-4 max-w-md mx-auto">
+
       <SpeedInsights/>
       <Analytics/>
 
       <div className="flex justify-between items-center mb-4">
+
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
         <div className="text-center">
           {translations.language.map((lang, index) => (
@@ -206,14 +187,20 @@ setResult(itemHint);
         <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
 
       </div>
+
       <Card>
-        <CardHeader>
-          <CardTitle>{translations.title[language]}</CardTitle>
+
+        <CardHeader>          <CardTitle>{translations.title[language]}</CardTitle>
         </CardHeader>
+
         <CardContent>
+
           <div className="mb-4 h-80 bg-gray-200 relative overflow-hidden">
+
             <div className="absolute inset-0 border-4 border-gray-400 rounded-lg"></div>
+
             {Array.from({ length: balls }).map((_, index) => (
+
               <div
                 key={index}
                 className={`absolute w-6 h-6 ${ballColors[index % ballColors.length]} ${borderColors[index % borderColors.length]} border-2 rounded-full`}
@@ -222,8 +209,11 @@ setResult(itemHint);
      top: `${Math.random() * 60 + 10}%`
                 }}
               ></div>
+
             ))}
+
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-8 bg-gray-300 border-t-4 border-gray-400"></div>
+
             {stage !== 'ready' && (
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
@@ -236,14 +226,17 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
                 { result.emoji }
               </div>
             )}
+
           </div>
+
           <Button 
             onClick={playGacha} 
-            disabled={balls === 0 || stage !== 'ready'} 
+            disabled={stage !== 'ready'} 
             className="w-full mb-2"
           >
             {stage === 'ready' ? translations.play[language] : translations.playing[language]}
           </Button>
+
           {stage === 'opening' && (
             <Button onClick={openBall} className="w-full mb-2">{translations.open[language]}</Button>
           )}
@@ -260,5 +253,6 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
       </Card>
     </div>
   );
+
   }
             
