@@ -161,6 +161,9 @@ clearInterval(intervalId);
  <div className="p-4 max-w-md mx-auto">
       <SpeedInsights/>
       <Analytics/>
+
+       <Button onClick={playGlassBeadsSounds}> alofthha </Button>
+
       <div className="flex justify-between items-center mb-4">
         <Button onClick={() => changeLanguage(-1)}><ChevronLeft size={24} /></Button>
         <div className="text-center">
