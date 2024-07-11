@@ -25,7 +25,7 @@ const ballColors = ['bg-red-300', 'bg-blue-300', 'bg-green-300', 'bg-yellow-300'
 const borderColors = ['border-red-500', 'border-blue-500', 'border-green-500', 'border-yellow-500', 'border-purple-500'];
 
 const translations = {
-  title: ['ガチャポン機', 'Chagapon Machine', 'เครื่องชากาปอง', '扭蛋机'],
+  title: ['ガチャポン機', 'The Chagapon', 'ชากา ปองปอง', '扭蛋机'],
   play: ['回す', 'Play', 'หมุนกาชาปอง', '扭蛋'],
   playing: ['プレイ中...', 'Playing...', 'กำลังเล่น...', '正在扭...'],
   open: ['開ける', 'Open Ball', 'เปิดลูกบอล', '打开'],
@@ -66,7 +66,7 @@ useEffect(() => {
     if (!audioContext) return;
 
 const duration = 0.06 + Math.random() * 0.08;
-const freq = 700 + Math.random() * 600;
+const freq = 600 + Math.random() * 700;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -115,7 +115,7 @@ playGlassBeadsSounds();
 
    const interval = setInterval(() => {
 
-if ( Math.random() < 0.4 ) {
+if ( Math.random() < 0.3 ) {
         position += 1;
         setBallPosition(position);
 
@@ -245,7 +245,10 @@ left: stage === 'dispensing' ? `${ballSlide}%` : '50%'
           )}
 
           {stage === 'result' && (
-            <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}</p>
+            <p className="text-center">{translations.result[language]} {result.name[language]} {result.emoji}</p></br>
+          )}
+ {stage !== 'opening' && stage !== 'result' && (
+            <p className="text-center"></p></br>
           )}
 
           {stage !== 'ready' && (
