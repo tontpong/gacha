@@ -100,7 +100,7 @@ window.stopPlaying();
           )).reduce((prev, curr) => [prev, ' / ', curr])}
         </div>
         <Button onClick={() => changeLanguage(1)}><ChevronRight size={24} /></Button>
-<div><button onclick="startPlaying()">a</button>......<button onclick="stopPlaying()">b</button></div>
+<div><button onclick="startPlaying()">wssa</button>......<button onclick="stopPlaying()">bbbbb</button></div>
       </div>
       <Card>
         <CardHeader>
