@@ -66,7 +66,7 @@ new (window.AudioContext || window.webkitAudioContext)();
 const duration = 
 0.06 + Math.random() * 0.08;
 const freq = 
-700 + Math.random() * 600;
+670 + Math.random() * 600;
 
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -112,21 +112,24 @@ playGlassBeadsSounds();
 }, 100);
 
       const interval = setInterval(() => {
+
+if ( Math.random() < 0.5 ) {
         position += 1;
         setBallPosition(position);
-
+} else {
 setBallSlide(
 (prev) => Math.random() < 0.5 ?
- ( prev < 5 ? prev = 0 : prev -= 5 ) :
-( prev > 95 ? prev = 100 : prev += 5 ) 
+ ( prev < 5 ? prev += 5 : prev -= 5 ) :
+( prev > 95 ? prev -= 5 : prev += 5 ) 
 )
+}
 
 setCapsuleColor(Math.floor(Math.random() * ballColors.length));
 
         if (position >= 100) 
           setStage('opening');
         
-      }, 100);
+      }, 50);
 
 return () => {
 clearInterval(interval);
@@ -212,7 +215,7 @@ clearInterval(intervalId);
               <div 
                 className={`absolute left-1/2 transform -translate-x-1/2 w-12 h-12 ${ballColors[capsuleColor]} ${borderColors[capsuleColor]} border-2 rounded-full flex items-center justify-center text-2xl`}
                 style={{ 
-top: stage === 'dispensing' ? `${ballPosition}%` : '90%' ,
+top: stage === 'dispensing' ? `${ballPosition}%` : '87%' ,
 left: stage === 'dispensing' ? `${ballSlide}%` : '50%' 
 }}
                 onClick={openBall}
